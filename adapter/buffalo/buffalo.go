@@ -12,15 +12,15 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gobuffalo/buffalo"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Buffalo structure value is a Buffalo GoAdmin adapter.
@@ -43,6 +43,10 @@ func (bu *Buffalo) User(ctx interface{}) (models.UserModel, bool) {
 func (bu *Buffalo) Use(app interface{}, plugs []plugins.Plugin) error {
 	return bu.GetUse(app, plugs, bu)
 }
+
+func (bu *Buffalo) Run() error                 { panic("not implement") }
+func (bu *Buffalo) DisableLog()                { panic("not implement") }
+func (bu *Buffalo) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (bu *Buffalo) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn context.NodeProcessor, btns ...types.Button) {
@@ -140,12 +144,12 @@ func getHandleFunc(eng *buffalo.App, method string) HandleFun {
 }
 
 // Name implements the method Adapter.Name.
-func (*Buffalo) Name() string {
+func (bu *Buffalo) Name() string {
 	return "buffalo"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Buffalo) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (bu *Buffalo) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx buffalo.Context
 		ok  bool

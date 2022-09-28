@@ -11,16 +11,16 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	gctx "github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	"github.com/vafinvr/go-admin/adapter"
+	gctx "github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Beego structure value is a Beego GoAdmin adapter.
@@ -43,6 +43,10 @@ func (bee *Beego) User(ctx interface{}) (models.UserModel, bool) {
 func (bee *Beego) Use(app interface{}, plugs []plugins.Plugin) error {
 	return bee.GetUse(app, plugs, bee)
 }
+
+func (bee *Beego) Run() error                 { panic("not implement") }
+func (bee *Beego) DisableLog()                { panic("not implement") }
+func (bee *Beego) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (bee *Beego) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn gctx.NodeProcessor, navButtons ...types.Button) {
@@ -97,12 +101,12 @@ func (bee *Beego) AddHandler(method, path string, handlers gctx.Handlers) {
 }
 
 // Name implements the method Adapter.Name.
-func (*Beego) Name() string {
+func (bee *Beego) Name() string {
 	return "beego"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Beego) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (bee *Beego) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx *context.Context
 		ok  bool

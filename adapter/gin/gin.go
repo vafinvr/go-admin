@@ -11,15 +11,15 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gin-gonic/gin"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Gin structure value is a Gin GoAdmin adapter.
@@ -57,6 +57,10 @@ func Content(handler HandlerFunc) gin.HandlerFunc {
 		})
 	}
 }
+
+func (gins *Gin) Run() error                 { panic("not implement") }
+func (gins *Gin) DisableLog()                { panic("not implement") }
+func (gins *Gin) Static(prefix, path string) { panic("not implement") }
 
 // SetApp implements the method Adapter.SetApp.
 func (gins *Gin) SetApp(app interface{}) error {
@@ -99,12 +103,12 @@ func (gins *Gin) AddHandler(method, path string, handlers context.Handlers) {
 }
 
 // Name implements the method Adapter.Name.
-func (*Gin) Name() string {
+func (gins *Gin) Name() string {
 	return "gin"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Gin) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (gins *Gin) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx *gin.Context
 		ok  bool
@@ -124,7 +128,8 @@ func (gins *Gin) Redirect() {
 }
 
 // SetContentType implements the method Adapter.SetContentType.
-func (*Gin) SetContentType() {}
+func (gins *Gin) SetContentType() {
+}
 
 // Write implements the method Adapter.Write.
 func (gins *Gin) Write(body []byte) {

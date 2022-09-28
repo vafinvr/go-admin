@@ -3,15 +3,15 @@ package controller
 import (
 	"fmt"
 
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/modules/auth"
-	"github.com/GoAdminGroup/go-admin/modules/language"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/parameter"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/response"
-	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/GoAdminGroup/go-admin/template/types/form"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/modules/auth"
+	"github.com/vafinvr/go-admin/modules/language"
+	"github.com/vafinvr/go-admin/plugins/admin/modules"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/parameter"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/response"
+	"github.com/vafinvr/go-admin/template/types"
+	"github.com/vafinvr/go-admin/template/types/form"
 )
 
 func (h *Handler) ApiDetail(ctx *context.Context) {
@@ -98,7 +98,7 @@ function DeletePost(id) {
 }
 
 $('.delete-btn').on('click', function (event) {
-	DeletePost('%s')
+	DeletePost(%s)
 });
 
 </script>`, language.Get("are you sure to delete"), language.Get("yes"), language.Get("cancel"), deleteUrl, infoUrl, id)

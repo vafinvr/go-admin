@@ -11,15 +11,14 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/gofiber/fiber/v2"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 	"github.com/valyala/fasthttp"
 )
 
@@ -43,6 +42,10 @@ func (gof *Gofiber) User(ctx interface{}) (models.UserModel, bool) {
 func (gof *Gofiber) Use(app interface{}, plugs []plugins.Plugin) error {
 	return gof.GetUse(app, plugs, gof)
 }
+
+func (fagof *Gofiber) Run() error               { panic("not implement") }
+func (gof *Gofiber) DisableLog()                { panic("not implement") }
+func (gof *Gofiber) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (gof *Gofiber) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn context.NodeProcessor, btns ...types.Button) {
@@ -147,12 +150,12 @@ func (r *netHTTPBody) Close() error {
 }
 
 // Name implements the method Adapter.Name.
-func (*Gofiber) Name() string {
+func (gof *Gofiber) Name() string {
 	return "gofiber"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Gofiber) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (gof *Gofiber) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx *fiber.Ctx
 		ok  bool

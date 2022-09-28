@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/config"
 )
 
 // Mssql is a Connection of mssql.
@@ -265,10 +265,8 @@ func (db *Mssql) InitDB(cfgs map[string]config.Database) Connection {
 				panic(err.Error())
 			}
 
-			sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
-			sqlDB.SetMaxOpenConns(cfg.MaxOpenConns)
-			sqlDB.SetConnMaxLifetime(cfg.ConnMaxLifetime)
-			sqlDB.SetConnMaxIdleTime(cfg.ConnMaxIdleTime)
+			sqlDB.SetMaxIdleConns(cfg.MaxIdleCon)
+			sqlDB.SetMaxOpenConns(cfg.MaxOpenCon)
 
 			db.DbList[conn] = sqlDB
 

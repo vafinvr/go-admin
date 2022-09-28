@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
+	"github.com/vafinvr/go-admin/plugins/admin/modules"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/form"
 )
 
 type Parameters struct {
@@ -175,24 +175,16 @@ func (param Parameters) IsAll() bool {
 	return param.GetFieldValue(IsAll) == True
 }
 
-func (param *Parameters) WithURLPath(path string) Parameters {
+func (param Parameters) WithURLPath(path string) Parameters {
 	param.URLPath = path
-	return *param
-}
-
-func (param *Parameters) isAllTrue() {
-	param.Fields[IsAll] = []string{True}
-}
-
-func (param *Parameters) isAllFalse() {
-	param.Fields[IsAll] = []string{False}
+	return param
 }
 
 func (param Parameters) WithIsAll(isAll bool) Parameters {
 	if isAll {
-		param.isAllTrue()
+		param.Fields[IsAll] = []string{True}
 	} else {
-		param.isAllFalse()
+		param.Fields[IsAll] = []string{False}
 	}
 	return param
 }
@@ -262,16 +254,16 @@ func (param Parameters) Join() string {
 	return p.Encode()
 }
 
-func (param *Parameters) SetPage(page string) Parameters {
+func (param Parameters) SetPage(page string) Parameters {
 	param.Page = page
 	param.PageInt, _ = strconv.Atoi(page)
-	return *param
+	return param
 }
 
-func (param *Parameters) SetPageSize(pageSize string) Parameters {
+func (param Parameters) SetPageSize(pageSize string) Parameters {
 	param.PageSize = pageSize
 	param.PageSizeInt, _ = strconv.Atoi(pageSize)
-	return *param
+	return param
 }
 
 func (param Parameters) GetRouteParamStr() string {
@@ -433,9 +425,9 @@ func (param Parameters) Statement(wheres, table, delimiter, delimiter2 string, w
 					for range value {
 						qmark += "?,"
 					}
-					wheres += modules.Delimiter(delimiter, delimiter2, table) + "." + modules.FilterField(key, delimiter, delimiter2) + " " + op + " (" + qmark[:len(qmark)-1] + ") and "
+					wheres += table + "." + modules.FilterField(key, delimiter, delimiter2) + " " + op + " (" + qmark[:len(qmark)-1] + ") and "
 				} else {
-					wheres += modules.Delimiter(delimiter, delimiter2, table) + "." + modules.FilterField(key, delimiter, delimiter2) + " " + op + " ? and "
+					wheres += table + "." + modules.FilterField(key, delimiter, delimiter2) + " " + op + " ? and "
 				}
 				if op == "like" && !strings.Contains(value[0], "%") {
 					whereArgs = append(whereArgs, "%"+filterProcess(key, value[0], keyIndexSuffix)+"%")

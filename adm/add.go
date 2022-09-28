@@ -4,10 +4,9 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/modules/auth"
-	"github.com/GoAdminGroup/go-admin/modules/db"
-	"github.com/GoAdminGroup/go-admin/modules/db/dialect"
-	"gopkg.in/ini.v1"
+	"github.com/vafinvr/go-admin/modules/auth"
+	"github.com/vafinvr/go-admin/modules/db"
+	"github.com/vafinvr/go-admin/modules/db/dialect"
 )
 
 func addUser(cfgFile string) {

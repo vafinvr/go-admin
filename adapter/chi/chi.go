@@ -12,15 +12,15 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	cfg "github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/go-chi/chi"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	cfg "github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Chi structure value is a Chi GoAdmin adapter.
@@ -43,6 +43,10 @@ func (ch *Chi) User(ctx interface{}) (models.UserModel, bool) {
 func (ch *Chi) Use(app interface{}, plugs []plugins.Plugin) error {
 	return ch.GetUse(app, plugs, ch)
 }
+
+func (ch *Chi) Run() error                 { panic("not implement") }
+func (ch *Chi) DisableLog()                { panic("not implement") }
+func (ch *Chi) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (ch *Chi) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn context.NodeProcessor, btns ...types.Button) {
@@ -152,7 +156,7 @@ type Context struct {
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Chi) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (ch *Chi) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx Context
 		ok  bool
@@ -164,7 +168,7 @@ func (*Chi) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 }
 
 // Name implements the method Adapter.Name.
-func (*Chi) Name() string {
+func (ch *Chi) Name() string {
 	return "chi"
 }
 

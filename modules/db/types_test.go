@@ -6,11 +6,10 @@ import (
 	"regexp"
 	"strings"
 	"testing"
-	"time"
 
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	"github.com/magiconair/properties/assert"
+	"github.com/vafinvr/go-admin/modules/config"
+	_ "github.com/vafinvr/go-admin/modules/db/drivers/mysql"
 )
 
 const (
@@ -221,10 +220,8 @@ func testConnDSN(driver, dsn string) Connection {
 
 func testConn(driver string, cfg config.Database) Connection {
 	cfg.Driver = driver
-	cfg.MaxIdleConns = 10
-	cfg.MaxOpenConns = 80
-	cfg.ConnMaxLifetime = time.Hour
-	cfg.ConnMaxIdleTime = 0
+	cfg.MaxIdleCon = 10
+	cfg.MaxOpenCon = 80
 	return GetConnectionByDriver(driver).InitDB(map[string]config.Database{
 		"default": cfg,
 	})

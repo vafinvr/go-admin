@@ -8,17 +8,17 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/modules/db"
-	"github.com/GoAdminGroup/go-admin/modules/errors"
-	"github.com/GoAdminGroup/go-admin/modules/language"
-	"github.com/GoAdminGroup/go-admin/modules/logger"
-	"github.com/GoAdminGroup/go-admin/modules/page"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	template2 "github.com/GoAdminGroup/go-admin/template"
-	"github.com/GoAdminGroup/go-admin/template/types"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/constant"
+	"github.com/vafinvr/go-admin/modules/db"
+	"github.com/vafinvr/go-admin/modules/errors"
+	"github.com/vafinvr/go-admin/modules/language"
+	"github.com/vafinvr/go-admin/modules/logger"
+	"github.com/vafinvr/go-admin/modules/page"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	template2 "github.com/vafinvr/go-admin/template"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Invoker contains the callback functions which are used

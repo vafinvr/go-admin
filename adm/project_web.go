@@ -12,12 +12,11 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-	"time"
 
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/modules/db"
-	"github.com/GoAdminGroup/go-admin/modules/system"
-	"github.com/GoAdminGroup/go-admin/modules/utils"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/db"
+	"github.com/vafinvr/go-admin/modules/system"
+	"github.com/vafinvr/go-admin/modules/utils"
 )
 
 func buildProjectWeb(port string) {
@@ -180,16 +179,14 @@ func buildProjectWeb(port string) {
 			if info.DriverName != db.DriverSqlite {
 				dbList = map[string]config.Database{
 					"default": {
-						Host:            info.Host,
-						Port:            info.Port,
-						User:            info.User,
-						Pwd:             info.Password,
-						Name:            info.Database,
-						MaxIdleConns:    5,
-						MaxOpenConns:    10,
-						ConnMaxLifetime: time.Hour,
-						ConnMaxIdleTime: 0,
-						Driver:          info.DriverName,
+						Host:       info.Host,
+						Port:       info.Port,
+						User:       info.User,
+						Pwd:        info.Password,
+						Name:       info.Database,
+						MaxIdleCon: 5,
+						MaxOpenCon: 10,
+						Driver:     info.DriverName,
 					},
 				}
 			} else {

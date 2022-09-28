@@ -5,21 +5,20 @@ import (
 	"log"
 	"os"
 	"os/signal"
-	"time"
 
-	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	_ "github.com/GoAdminGroup/themes/sword"
+	_ "github.com/vafinvr/go-admin/adapter/gin"
+	_ "github.com/vafinvr/go-admin/modules/db/drivers/mysql"
 
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/examples/datamodel"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/modules/language"
-	"github.com/GoAdminGroup/go-admin/plugins/example"
-	"github.com/GoAdminGroup/go-admin/template"
-	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/GoAdminGroup/themes/adminlte"
 	"github.com/gin-gonic/gin"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/examples/datamodel"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/language"
+	"github.com/vafinvr/go-admin/plugins/example"
+	"github.com/vafinvr/go-admin/template"
+	"github.com/vafinvr/go-admin/template/chartjs"
 )
 
 func main() {
@@ -34,15 +33,14 @@ func main() {
 		Env: config.EnvLocal,
 		Databases: config.DatabaseList{
 			"default": {
-				Host:            "127.0.0.1",
-				Port:            "3306",
-				User:            "root",
-				Pwd:             "root",
-				Name:            "godmin",
-				MaxIdleConns:    50,
-				MaxOpenConns:    150,
-				ConnMaxLifetime: time.Hour,
-				Driver:          config.DriverMysql,
+				Host:       "127.0.0.1",
+				Port:       "3306",
+				User:       "root",
+				Pwd:        "root",
+				Name:       "godmin",
+				MaxIdleCon: 50,
+				MaxOpenCon: 150,
+				Driver:     config.DriverMysql,
 
 				//Driver: config.DriverSqlite,
 				//File:   "../datamodel/admin.db",

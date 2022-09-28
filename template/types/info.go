@@ -9,18 +9,18 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/config"
 
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/modules/db"
-	"github.com/GoAdminGroup/go-admin/modules/errors"
-	"github.com/GoAdminGroup/go-admin/modules/language"
-	"github.com/GoAdminGroup/go-admin/modules/logger"
-	"github.com/GoAdminGroup/go-admin/modules/utils"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/parameter"
-	"github.com/GoAdminGroup/go-admin/template/types/form"
-	"github.com/GoAdminGroup/go-admin/template/types/table"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/modules/db"
+	"github.com/vafinvr/go-admin/modules/errors"
+	"github.com/vafinvr/go-admin/modules/language"
+	"github.com/vafinvr/go-admin/modules/logger"
+	"github.com/vafinvr/go-admin/modules/utils"
+	"github.com/vafinvr/go-admin/plugins/admin/modules"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/parameter"
+	"github.com/vafinvr/go-admin/template/types/form"
+	"github.com/vafinvr/go-admin/template/types/table"
 )
 
 // FieldModel is the single query result.
@@ -147,13 +147,12 @@ type Field struct {
 
 	Joins Joins
 
-	Width       int
-	Sortable    bool
-	EditAble    bool
-	Fixed       bool
-	Filterable  bool
-	Hide        bool
-	HideForList bool
+	Width      int
+	Sortable   bool
+	EditAble   bool
+	Fixed      bool
+	Filterable bool
+	Hide       bool
 
 	EditType    table.Type
 	EditOptions FieldOptions
@@ -343,9 +342,6 @@ func (f FieldList) GetTheadAndFilterForm(info TableInfo, params parameter.Parame
 		}
 
 		if field.Hide {
-			continue
-		}
-		if field.HideForList {
 			continue
 		}
 		thead = append(thead, TheadItem{
@@ -1127,7 +1123,7 @@ func (i *InfoPanel) FieldFileSize() *InfoPanel {
 }
 
 func (i *InfoPanel) FieldDate(format string) *InfoPanel {
-	i.addDisplayChains(displayFnGens["date"].Get(format))
+	i.addDisplayChains(displayFnGens["date"].Get())
 	return i
 }
 
@@ -1398,11 +1394,6 @@ func (i *InfoPanel) FieldFilterOnChooseDisable(value string, field ...string) *I
 
 func (i *InfoPanel) FieldHide() *InfoPanel {
 	i.FieldList[i.curFieldListIndex].Hide = true
-	return i
-}
-
-func (i *InfoPanel) FieldHideForList() *InfoPanel {
-	i.FieldList[i.curFieldListIndex].HideForList = true
 	return i
 }
 

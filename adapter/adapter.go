@@ -9,18 +9,18 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/modules/auth"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/modules/db"
-	"github.com/GoAdminGroup/go-admin/modules/errors"
-	"github.com/GoAdminGroup/go-admin/modules/logger"
-	"github.com/GoAdminGroup/go-admin/modules/menu"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/template"
-	"github.com/GoAdminGroup/go-admin/template/types"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/modules/auth"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/constant"
+	"github.com/vafinvr/go-admin/modules/db"
+	"github.com/vafinvr/go-admin/modules/errors"
+	"github.com/vafinvr/go-admin/modules/logger"
+	"github.com/vafinvr/go-admin/modules/menu"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/template"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // WebFrameWork is an interface which is used as an adapter of
@@ -88,17 +88,17 @@ func (base *BaseAdapter) GetConnection() db.Connection {
 }
 
 // HTMLContentType return the default content type header.
-func (*BaseAdapter) HTMLContentType() string {
+func (base *BaseAdapter) HTMLContentType() string {
 	return "text/html; charset=utf-8"
 }
 
 // CookieKey return the cookie key.
-func (*BaseAdapter) CookieKey() string {
+func (base *BaseAdapter) CookieKey() string {
 	return auth.DefaultCookieKey
 }
 
 // GetUser is a helper function get the auth user model from the context.
-func (*BaseAdapter) GetUser(ctx interface{}, wf WebFrameWork) (models.UserModel, bool) {
+func (base *BaseAdapter) GetUser(ctx interface{}, wf WebFrameWork) (models.UserModel, bool) {
 	cookie, err := wf.SetContext(ctx).GetCookie()
 
 	if err != nil {
@@ -110,7 +110,7 @@ func (*BaseAdapter) GetUser(ctx interface{}, wf WebFrameWork) (models.UserModel,
 }
 
 // GetUse is a helper function adds the plugins to the framework.
-func (*BaseAdapter) GetUse(app interface{}, plugin []plugins.Plugin, wf WebFrameWork) error {
+func (base *BaseAdapter) GetUse(app interface{}, plugin []plugins.Plugin, wf WebFrameWork) error {
 	if err := wf.SetApp(app); err != nil {
 		return err
 	}
@@ -127,10 +127,6 @@ func (*BaseAdapter) GetUse(app interface{}, plugin []plugins.Plugin, wf WebFrame
 
 	return nil
 }
-
-func (*BaseAdapter) Run() error         { panic("not implement") }
-func (*BaseAdapter) DisableLog()        { panic("not implement") }
-func (*BaseAdapter) Static(_, _ string) { panic("not implement") }
 
 // GetContent is a helper function of adapter.Content
 func (base *BaseAdapter) GetContent(ctx interface{}, getPanelFn types.GetPanelFn, wf WebFrameWork,

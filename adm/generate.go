@@ -9,14 +9,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AlecAivazis/survey/v2"
 	"github.com/AlecAivazis/survey/v2/core"
-	"github.com/GoAdminGroup/go-admin/modules/db"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/tools"
 	"github.com/mgutz/ansi"
 	"github.com/schollz/progressbar"
-	"gopkg.in/ini.v1"
+	"github.com/vafinvr/go-admin/modules/db"
+	"github.com/vafinvr/go-admin/plugins/admin/modules"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/tools"
 )
 
 var systemGoAdminTables = []string{

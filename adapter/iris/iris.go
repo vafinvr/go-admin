@@ -11,16 +11,14 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/kataras/iris/v12"
-
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Iris structure value is an Iris GoAdmin adapter.
@@ -43,6 +41,10 @@ func (is *Iris) User(ctx interface{}) (models.UserModel, bool) {
 func (is *Iris) Use(app interface{}, plugs []plugins.Plugin) error {
 	return is.GetUse(app, plugs, is)
 }
+
+func (is *Iris) Run() error                 { panic("not implement") }
+func (is *Iris) DisableLog()                { panic("not implement") }
+func (is *Iris) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (is *Iris) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn context.NodeProcessor, btns ...types.Button) {
@@ -104,12 +106,12 @@ func (is *Iris) AddHandler(method, path string, handlers context.Handlers) {
 }
 
 // Name implements the method Adapter.Name.
-func (*Iris) Name() string {
+func (is *Iris) Name() string {
 	return "iris"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Iris) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (is *Iris) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx iris.Context
 		ok  bool

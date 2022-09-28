@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/modules/errors"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
 	"github.com/gavv/httpexpect"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/errors"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/form"
 )
 
 func managerTest(e *httpexpect.Expect, sesID *http.Cookie) {
@@ -133,4 +133,8 @@ func managerTest(e *httpexpect.Expect, sesID *http.Cookie) {
 		},
 		"msg": "ok",
 	})
+
+	printlnWithColor("delete", "green")
+	e.GET("/pong").Expect().Status(404)
+
 }

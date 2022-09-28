@@ -12,15 +12,15 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/buaazp/fasthttprouter"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 	"github.com/valyala/fasthttp"
 )
 
@@ -44,6 +44,10 @@ func (fast *Fasthttp) User(ctx interface{}) (models.UserModel, bool) {
 func (fast *Fasthttp) Use(app interface{}, plugs []plugins.Plugin) error {
 	return fast.GetUse(app, plugs, fast)
 }
+
+func (fast *Fasthttp) Run() error                 { panic("not implement") }
+func (fast *Fasthttp) DisableLog()                { panic("not implement") }
+func (fast *Fasthttp) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (fast *Fasthttp) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn context.NodeProcessor, btns ...types.Button) {
@@ -163,12 +167,12 @@ func (r *netHTTPBody) Close() error {
 }
 
 // Name implements the method Adapter.Name.
-func (*Fasthttp) Name() string {
+func (fast *Fasthttp) Name() string {
 	return "fasthttp"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Fasthttp) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (fast *Fasthttp) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx *fasthttp.RequestCtx
 		ok  bool

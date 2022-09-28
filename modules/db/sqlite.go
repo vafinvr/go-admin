@@ -7,7 +7,7 @@ package db
 import (
 	"database/sql"
 
-	"github.com/GoAdminGroup/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/config"
 )
 
 // Sqlite is a Connection of sqlite.
@@ -89,10 +89,8 @@ func (db *Sqlite) InitDB(cfgList map[string]config.Database) Connection {
 				panic(err)
 			}
 
-			sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
-			sqlDB.SetMaxOpenConns(cfg.MaxOpenConns)
-			sqlDB.SetConnMaxLifetime(cfg.ConnMaxLifetime)
-			sqlDB.SetConnMaxIdleTime(cfg.ConnMaxIdleTime)
+			sqlDB.SetMaxIdleConns(cfg.MaxIdleCon)
+			sqlDB.SetMaxOpenConns(cfg.MaxOpenCon)
 
 			db.DbList[conn] = sqlDB
 

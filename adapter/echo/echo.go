@@ -11,15 +11,14 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/labstack/echo/v4"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Echo structure value is an Echo GoAdmin adapter.
@@ -42,6 +41,10 @@ func (e *Echo) User(ctx interface{}) (models.UserModel, bool) {
 func (e *Echo) Use(app interface{}, plugs []plugins.Plugin) error {
 	return e.GetUse(app, plugs, e)
 }
+
+func (e *Echo) Run() error                 { panic("not implement") }
+func (e *Echo) DisableLog()                { panic("not implement") }
+func (e *Echo) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (e *Echo) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn context.NodeProcessor, btns ...types.Button) {
@@ -101,12 +104,12 @@ func (e *Echo) AddHandler(method, path string, handlers context.Handlers) {
 }
 
 // Name implements the method Adapter.Name.
-func (*Echo) Name() string {
+func (e *Echo) Name() string {
 	return "echo"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Echo) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (e *Echo) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx echo.Context
 		ok  bool

@@ -12,15 +12,15 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/GoAdminGroup/go-admin/adapter"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/constant"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gorilla/mux"
+	"github.com/vafinvr/go-admin/adapter"
+	"github.com/vafinvr/go-admin/context"
+	"github.com/vafinvr/go-admin/engine"
+	"github.com/vafinvr/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/plugins"
+	"github.com/vafinvr/go-admin/plugins/admin/models"
+	"github.com/vafinvr/go-admin/plugins/admin/modules/constant"
+	"github.com/vafinvr/go-admin/template/types"
 )
 
 // Gorilla structure value is a Gorilla GoAdmin adapter.
@@ -43,6 +43,10 @@ func (g *Gorilla) User(ctx interface{}) (models.UserModel, bool) {
 func (g *Gorilla) Use(app interface{}, plugs []plugins.Plugin) error {
 	return g.GetUse(app, plugs, g)
 }
+
+func (g *Gorilla) Run() error                 { panic("not implement") }
+func (g *Gorilla) DisableLog()                { panic("not implement") }
+func (g *Gorilla) Static(prefix, path string) { panic("not implement") }
 
 // Content implements the method Adapter.Content.
 func (g *Gorilla) Content(ctx interface{}, getPanelFn types.GetPanelFn, fn context.NodeProcessor, btns ...types.Button) {
@@ -129,12 +133,12 @@ type Context struct {
 }
 
 // Name implements the method Adapter.Name.
-func (*Gorilla) Name() string {
+func (g *Gorilla) Name() string {
 	return "gorilla"
 }
 
 // SetContext implements the method Adapter.SetContext.
-func (*Gorilla) SetContext(contextInterface interface{}) adapter.WebFrameWork {
+func (g *Gorilla) SetContext(contextInterface interface{}) adapter.WebFrameWork {
 	var (
 		ctx Context
 		ok  bool

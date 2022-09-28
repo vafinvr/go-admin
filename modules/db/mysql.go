@@ -7,7 +7,7 @@ package db
 import (
 	"database/sql"
 
-	"github.com/GoAdminGroup/go-admin/modules/config"
+	"github.com/vafinvr/go-admin/modules/config"
 )
 
 // SQLTx is an in-progress database transaction.
@@ -65,10 +65,8 @@ func (db *Mysql) InitDB(cfgs map[string]config.Database) Connection {
 			}
 
 			// Largest set up the database connection reduce time wait
-			sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
-			sqlDB.SetMaxOpenConns(cfg.MaxOpenConns)
-			sqlDB.SetConnMaxLifetime(cfg.ConnMaxLifetime)
-			sqlDB.SetConnMaxIdleTime(cfg.ConnMaxIdleTime)
+			sqlDB.SetMaxIdleConns(cfg.MaxIdleCon)
+			sqlDB.SetMaxOpenConns(cfg.MaxOpenCon)
 
 			db.DbList[conn] = sqlDB
 
